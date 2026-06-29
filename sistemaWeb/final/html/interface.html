@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card de Botões</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 50px;
+            background-color: #F19ED2;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+
+        .navbar button::before {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-right: 5px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 10px solid white;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            width: 75%;
+            max-width: 600px;
+
+            padding-bottom: 1rem;
+        }
+
+        .sub-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #E8C5E5;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px;
+            width: 80%;
+        }
+
+        .sub-card input {
+            width: 40px;
+            margin: 0 10px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #F19ED2;
+            color: white;
+            cursor: pointer;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        #backButton {
+            width: auto;
+        }
+
+        .butons-group {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .cardLabel {
+            width: 100%;
+            background: aquamarine;
+            /* background: #E8C5E5; */
+            align-items: center;
+            text-align: center;
+            height: 3rem;
+            border-radius: 10px 10px 0px 0px;
+            display: flex;
+            justify-content: center;
+        }
+
+        input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        }
+
+        #thirdCardLabel, .labelCard{
+            margin-top: 2rem;
+            padding: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        #thirdCardTitle{
+            margin-top: 1rem;
+            padding: 10px;
+            font-size: 22px;
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button id="backButton" class="hidden" onclick="goToInitialCard()"></button>
+    </div>
+    <div class="container">
+        <div id="initialCard" class="card">
+            <label class="cardLabel">Nazide Pressus</label>
+            <div class="butons-group">
+                <button id="btn1" onclick="showSecondCard()">Força</button>
+                <button id="btn2" onclick="showThirdCard(2)" disabled>Resistência</button>
+                <button id="btn3" onclick="showThirdCard(3)" disabled>Repetições</button>
+                <button id="btn4" onclick="showThirdCard(4)" disabled>Contrações Rápidas</button>
+            </div>
+        </div>
+        <div id="secondCard" class="card hidden">
+            <label class="labelCard">Valores de 0 a 5 pela escala de oxford</label>
+            <button onclick="handleNumberClick(0)">Nivel 0 (ausente)</button>
+            <button onclick="handleNumberClick(1)">Nivel 1 (muito Fraco)</button>
+            <button onclick="handleNumberClick(2)">Nivel 2 (Fraco)</button>
+            <button onclick="handleNumberClick(3)">Nivel 3 (Moderado)</button>
+            <button onclick="handleNumberClick(4)">Nivel 4 (Bom)</button>
+            <button onclick="handleNumberClick(5)">Nivel 5 (Forte)</button>
+        </div>
+        <div id="thirdCard" class="card hidden">
+            <label id="thirdCardTitle">Card Externo</label>
+            <label id="thirdCardLabel">Card Externo</label>
+            <div class="sub-card">
+                <div>
+                    <label>Nivel 1</label>
+                    <input type="number" min="1" max="10" oninput="checkInputValue(this)">
+                    <!-- <span>r</span> -->
+                </div>
+                <button>Iniciar</button>
+            </div>
+            <div class="sub-card">
+                <div>
+                    <label>Nivel 2</label>
+                    <input type="number" min="1" max="10" oninput="checkInputValue(this)">
+                    <!-- <span>r</span> -->
+                </div>
+                <button>Iniciar</button>
+            </div>
+            <div class="sub-card">
+                <div>
+                    <label>Nivel 3</label>
+                    <input type="number" min="1" max="10" oninput="checkInputValue(this)">
+                    <!-- <span>r</span> -->
+                </div>
+                <button>Iniciar</button>
+            </div>
+            <div class="sub-card">
+                <div>
+                    <label>Nivel 4</label>
+                    <input type="number" min="1" max="10" oninput="checkInputValue(this)">
+                    <!-- <span>r</span> -->
+                </div>
+                <button>Iniciar</button>
+            </div>
+            <div class="sub-card">
+                <div>
+                    <label>Nivel 5</label>
+                    <input type="number" min="1" max="10" oninput="checkInputValue(this)">
+                    <!-- <span>r</span> -->
+                </div>
+                <button>Iniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let estadoAtual = null;
+
+        function showThirdCard(btnNumber) {
+            
+            document.getElementById('initialCard').classList.add('hidden');
+            document.getElementById('thirdCard').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+
+            estadoAtual = btnNumber; // alterar o estado
+            const title = document.getElementById('thirdCardTitle');
+            const label = document.getElementById('thirdCardLabel');
+
+            if(estadoAtual == 2){//resistência
+                title.innerText = `Resistência`;
+                label.innerText = `Tempo mantido de contração máxima sem perder a força`;
+            }
+            if(estadoAtual == 3){//repetições
+                title.innerText = `Repetições`;
+                label.innerText = `Número de repetições possíveis com descanso de 4 segundos`;
+            }
+            if(estadoAtual == 4){//contrações rápidas
+                title.innerText = `Contrações Rápidas`;
+                label.innerText = `Número de contrações rápidas após 1 minuto de descanso`;
+            }
+
+//label.innerText = `Card Externo - Botão ${btnNumber} selecionado`;// alterar o texto do terceiro card
+        }
+
+        function showSecondCard() {
+            document.getElementById('initialCard').classList.add('hidden');
+            document.getElementById('secondCard').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+        }
+
+        function handleNumberClick(number) {
+            document.getElementById('secondCard').classList.add('hidden');
+            if (number === 0) {
+                document.getElementById('btn2').disabled = true;
+                document.getElementById('btn3').disabled = true;
+                document.getElementById('btn4').disabled = true;
+                goToInitialCard();
+            } else {
+                document.getElementById('secondCard').classList.add('hidden');
+                document.getElementById('initialCard').classList.remove('hidden');
+                document.getElementById('btn2').disabled = false;
+                document.getElementById('btn3').disabled = false;
+                document.getElementById('btn4').disabled = false;
+                document.getElementById('backButton').classList.add('hidden');
+            }
+        }
+
+        function goToInitialCard() {
+            document.getElementById('initialCard').classList.remove('hidden');
+            document.getElementById('secondCard').classList.add('hidden');
+            document.getElementById('thirdCard').classList.add('hidden');
+            document.getElementById('backButton').classList.add('hidden');
+        }
+
+        function checkInputValue(input) {
+            if (input.value > 10) {
+                input.value = 10;
+            } else if (input.value < 1) {
+                input.value = 1;
+            }
+        }
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+          <!DOCTYPE html>
+          <html lang="pt-BR">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Controle de Motor</title>
+              <style>
+                  body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+                  .slider { width: 80%; }
+                  .container { max-width: 600px; margin: auto; }
+                  button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h2>Controle do Motor</h2>
+                  <label for="angle">Ângulo (0-360): <span id="angleValue">0</span>°</label>
+                  <input type="range" id="angle" min="0" max="360" value="0" class="slider" oninput="updateAngle(this.value)">
+                  <button onclick="setAngle()">Definir Ângulo</button>
+                  <button onclick="resetMotor()">Zerar Posição</button>
+              </div>
+              <script>
+                  function updateAngle(value) {
+                      document.getElementById('angleValue').innerText = value;
+                  }
+    
+                  function setAngle() {
+                      const angle = document.getElementById('angle').value;
+                      fetch(`/setAngle?value=${angle}`);
+                  }
+    
+                  function resetMotor() {
+                      fetch(`/resetPosition`);
+                  }
+              </script>
+          </body>
+          </html>    

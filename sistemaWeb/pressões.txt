@@ -1,0 +1,26 @@
+
+
+
+nível 0:   50         pressão: 
+nível 1:   17
+nível 2:
+nível 3:
+nível 4:
+nível 5:
+
+305
+
+
+
+nível 1 da a apressão do 3
+
+
+
+
+
+nível 0:   
+nível 1:   339        pressão: 13.1
+nível 2:   264        pressão: 21.6
+nível 3:   193        pressão: 39.0
+nível 4:   117        pressão: 56.8
+nível 5:   114        pressão: 67.4

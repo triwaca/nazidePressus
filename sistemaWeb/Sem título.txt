@@ -1,0 +1,74 @@
+
+
+
+public class ControladorAnimacao : MonoBehaviour
+
+
+
+- anim_controller.cs 
+
+public class ControladorAnimacao : MonoBehaviour
+
+tem a variável estado que sera chamado no export child cordinates, e ela e alterada através da função public string setState(string stateNew)
+  
+
+
+- Assets/Scripts/Animation_handle_changeStateAnim.cs
+
+detecta quando a animação entou e saiu, ao entrar alterea o estado para idle, ao sair alterao estado para falling
+
+para isso ele usa a classe callerScript com a seguinte função
+
+callerScript.CallExternalFunctionSetAnimState("falling");
+ 
+- Assets/Scripts/Animation_handle_enter.cs 
+- Assets/Scripts/Animation_handle.cs 
+- Assets/Scripts/CallerScript.cs 
+
+basicamente esta gerenciando boa parte dos processos
+
+Verifica se os componentes camCont, screenRecorder e exportChildCoordinates estão inicializados corretamente.
+Obtém o índice da câmera ativa e o número da cena atual.
+Define os caminhos para salvar o vídeo e o CSV.
+Inicia a gravação do vídeo com screenRecorder.StartRecording(videoPath).
+Inicia a escrita dos dados com exportChildCoordinates.StartWritingToCSV(csvPath).
+
+com a função public void CallExternalFunctionSetAnimState(string state)
+
+altera o estado da animação no anim_controller.cs / ControladorAnimacao
+
+- Assets/Scripts/Change_camera.cs 
+
+Start()
+
+Desativa todas as câmeras e ativa a primeira.
+Obtém a referência ao ControladorAnimacao.
+Update()
+
+Detecta quando a tecla "C" é pressionada para alternar a câmera.
+ChangeCamera()
+
+Alterna para a próxima câmera da lista.
+Atualiza o estado da animação no ControladorAnimacao.
+Se todas as animações forem exibidas, encerra o jogo.
+getCurrentCamera()
+
+Retorna a câmera atualmente ativa.
+returnScene()
+
+Retorna o índice da cena baseado na posição da câmera.
+returnCurentCamIndex()
+
+Retorna o índice da câmera ativa dentro do vetor de câmeras.
+getCamerasQtd()
+
+Retorna a quantidade total de câmeras disponíveis.
+QuitGame()
+
+Encerra o jogo no editor (Unity Editor) ou no runtime.
+
+- Assets/Scripts/ExportChildCordinates.cs
+
+
+
+
